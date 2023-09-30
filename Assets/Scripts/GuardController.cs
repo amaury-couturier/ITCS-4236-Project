@@ -20,7 +20,7 @@ public class GuardController : MonoBehaviour
         // Calculate the dot product
         float dotProduct = Vector2.Dot(toPlayer.normalized, guardForward);
 
-        if (dotProduct > detectionThreshold)
+        /*if (dotProduct > detectionThreshold)
         {
             // Implement A* pathfinding algorithm here
             Debug.Log("Player is in front of the guard.");
@@ -29,6 +29,6 @@ public class GuardController : MonoBehaviour
         {
             // Implement a "StopChasing()" function here
             Debug.Log("Player is behind the guard.");
-        }
+        }*/
     } 
 }
