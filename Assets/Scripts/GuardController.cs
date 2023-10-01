@@ -1,9 +1,13 @@
+<<<<<<< Updated upstream
 using System.Collections;
 using System.Collections.Generic;
+=======
+>>>>>>> Stashed changes
 using UnityEngine;
 
 public class GuardController : MonoBehaviour
 {
+<<<<<<< Updated upstream
     [SerializeField] private float moveSpeed;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform guardTransform;
@@ -31,4 +35,15 @@ public class GuardController : MonoBehaviour
             Debug.Log("Player is behind the guard.");
         }*/
     } 
+=======
+    [SerializeField] private Collider2D flashlight;
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            Debug.Log("Detects Player!");
+        }
+    }
+>>>>>>> Stashed changes
 }
