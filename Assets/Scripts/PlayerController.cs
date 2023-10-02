@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr;
     private bool isFacingRight = true;
+    private Animator anim;
+
+    void Start(){
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -37,9 +42,33 @@ public class PlayerController : MonoBehaviour
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
 
+        SetAnimBools(inputHorizontal, inputVertical);
+
         CheckDashInput();
 
         Flip();
+    }
+
+    void SetAnimBools(float inputHorizontal, float inputVertical){
+        if(inputHorizontal != 0){
+            anim.SetBool("isWalkingRight", true);
+        } else{
+            anim.SetBool("isWalkingRight", false);
+        }
+        if(inputVertical > 0 && inputHorizontal == 0){
+            anim.SetBool("isWalkingUp", true);
+        } else{
+            anim.SetBool("isWalkingUp", false);
+        }
+
+        if(inputVertical < 0 && inputHorizontal == 0){
+            anim.SetBool("isWalkingDown", true);
+        } else{
+            anim.SetBool("isWalkingDown", false);
+        }
+
+        
+
     }
 
     void FixedUpdate()
