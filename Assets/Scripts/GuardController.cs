@@ -7,7 +7,10 @@ public class GuardController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform guardTransform;
-    [SerializeField] private float detectionThreshold = 0.4f;
+    //[SerializeField] private float detectionThreshold = 0.4f;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator anim;
+
 
     private void Update()
     {
@@ -30,5 +33,28 @@ public class GuardController : MonoBehaviour
             // Implement a "StopChasing()" function here
             Debug.Log("Player is behind the guard.");
         }*/
+
+        SetAnimBools(rb.velocity.x, rb.velocity.y);
+
     } 
+
+        void SetAnimBools(float inputHorizontal, float inputVertical){
+        if(inputHorizontal != 0){
+            anim.SetBool("isWalkingRight", true);
+        } else{
+            anim.SetBool("isWalkingRight", false);
+        }
+        if(inputVertical > 0 && inputHorizontal == 0){
+            anim.SetBool("isWalkingUp", true);
+        } else{
+            anim.SetBool("isWalkingUp", false);
+        }
+
+        if(inputVertical < 0 && inputHorizontal == 0){
+            anim.SetBool("isWalkingDown", true);
+        } else{
+            anim.SetBool("isWalkingDown", false);
+        }
+
+    }
 }

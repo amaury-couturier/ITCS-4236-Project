@@ -25,11 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr;
     private bool isFacingRight = true;
-    private Animator anim;
-
-    void Start(){
-        anim = GetComponent<Animator>();
-    }
+    [SerializeField] private Animator anim;
 
     void Update()
     {
@@ -66,8 +62,6 @@ public class PlayerController : MonoBehaviour
         } else{
             anim.SetBool("isWalkingDown", false);
         }
-
-        
 
     }
 
