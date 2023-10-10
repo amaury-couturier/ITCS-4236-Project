@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class PathFinding : MonoBehaviour
 {
@@ -15,34 +16,34 @@ public class PathFinding : MonoBehaviour
 
     void Update()
     {
-        FindPath(seeker.position, target.position);
+        if (Input.GetButtonDown("Jump"))
+        {
+            FindPath(seeker.position, target.position);
+        }
     }
 
     void FindPath(Vector2 startPos, Vector2 targetPos)
     {
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
+
         Tile startTile = grid.TileFromWorldPoint(startPos);
         Tile targetTile = grid.TileFromWorldPoint(targetPos);
         
-        List<Tile> openSet = new List<Tile>();
+        Heap<Tile> openSet = new Heap<Tile>(grid.MaxSize);
         HashSet<Tile> closedSet = new HashSet<Tile>();
         openSet.Add(startTile);
 
         while (openSet.Count > 0)
         {
-            Tile currentTile = openSet[0];
-            for (int i = 1; i < openSet.Count; i++)
-            {
-                if (openSet[i].fCost < currentTile.fCost || openSet[i].fCost == currentTile.fCost && openSet[i].hCost < currentTile.hCost)
-                {
-                    currentTile = openSet[i];
-                }
-            }
-
-            openSet.Remove(currentTile);
+            Tile currentTile = openSet.RemoveFirst();
             closedSet.Add(currentTile);
 
             if (currentTile == targetTile)
-            {
+            {   
+                sw.Stop();
+                print("Path found: " + sw.ElapsedMilliseconds + "ms");
+
                 RetracePath(startTile, targetTile);
                 return;
             }
