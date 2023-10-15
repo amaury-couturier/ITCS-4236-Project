@@ -42,12 +42,12 @@ public class Tile : IHeapItem<Tile>
         }
     }
 
-    public int CompareTo (Tile tileToComapre)
+    public int CompareTo (Tile tileToCompare)
     {
-        int compare = fCost.CompareTo(tileToComapre.fCost);
+        int compare = fCost.CompareTo(tileToCompare.fCost);
         if (compare == 0)
         {
-            compare = hCost.CompareTo(tileToComapre.hCost);
+            compare = hCost.CompareTo(tileToCompare.hCost);
         }
         return -compare;
     }
