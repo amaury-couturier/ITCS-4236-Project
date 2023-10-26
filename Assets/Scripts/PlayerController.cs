@@ -13,18 +13,19 @@ public class PlayerController : MonoBehaviour
     private float currentVelocityY;
     private float inputHorizontal;
     private float inputVertical;
+    public bool isWalking;
     
     [Header("Player Dash")]
     [SerializeField] private float dashingPower;
     [SerializeField] private float dashingTime;
     [SerializeField] private float dashingCooldown;
     private bool canDash = true;
-    private bool isDashing;
+    public bool isDashing;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     [SerializeField] private Animator anim;
 
     void Update()
@@ -38,56 +39,18 @@ public class PlayerController : MonoBehaviour
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
 
-        SetAnimBools(inputHorizontal, inputVertical);
+        if (isDashing || Mathf.Abs(inputHorizontal) == 0.0f || Mathf.Abs(inputVertical) == 0.0f)
+        {
+            isWalking = false;
+        }
+        else
+        {
+            isWalking = Mathf.Abs(inputHorizontal) > 0.0f || Mathf.Abs(inputVertical) > 0.0f;
+        }
 
         CheckDashInput();
 
         Flip();
-    }
-
-    void SetAnimBools(float inputHorizontal, float inputVertical){
-        if(Input.GetKeyDown(KeyCode.A)){
-            anim.SetBool("isWalkingRight", true);
-        } 
-        if(Input.GetKeyUp(KeyCode.A)) {
-            anim.SetBool("isWalkingRight", false);
-        }
-        if(Input.GetKeyDown(KeyCode.D)){
-            anim.SetBool("isWalkingRight", true);
-        } 
-        if(Input.GetKeyUp(KeyCode.D)) {
-            anim.SetBool("isWalkingRight", false);
-        }
-        if(Input.GetKeyDown(KeyCode.W)){
-            anim.SetBool("isWalkingUp", true);
-        } 
-        if(Input.GetKeyUp(KeyCode.W)) {
-            anim.SetBool("isWalkingUp", false);
-        }
-        if(Input.GetKeyDown(KeyCode.S)){
-            anim.SetBool("isWalkingDown", true);
-        } 
-        if(Input.GetKeyUp(KeyCode.S)) {
-            anim.SetBool("isWalkingDown", false);
-        }
-
-        // if(inputHorizontal != 0){
-        //     anim.SetBool("isWalkingRight", true);
-        // } else {
-        //     anim.SetBool("isWalkingRight", false);
-        // }
-        // if(inputVertical > 0 && inputHorizontal == 0){
-        //     anim.SetBool("isWalkingUp", true);
-        // } else{
-        //     anim.SetBool("isWalkingUp", false);
-        // }
-
-        // if(inputVertical < 0 && inputHorizontal == 0){
-        //     anim.SetBool("isWalkingDown", true);
-        // } else{
-        //     anim.SetBool("isWalkingDown", false);
-        // }
-
     }
 
     void FixedUpdate()
@@ -101,7 +64,7 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
     }
 
-    private void PlayerMovement() 
+    public void PlayerMovement() 
     {
         float targetVelocityX = inputHorizontal * playerMaxSpeed;
         float targetVelocityY = inputVertical * playerMaxSpeed;

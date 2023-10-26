@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e10238d33afef2d46a301125808ff0db
+guid: 14eaf70817723a64a8076891139a8ce7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 5
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,425 +106,438 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character_right_1
+      name: guard_idle_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b61383e60c0f994dbc1bd17e8233fb8
-      internalID: 299197806
+      spriteID: 6c9dc5d7db4c8cc4089843cc9a93e0f7
+      internalID: 1927821013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_right_2
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 263d2ebd20ab19d44907738caa175b7f
-      internalID: -505649354
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_right_3
+      name: guard_idle_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 327d9810e2292184f9563e04715fbd0a
-      internalID: -1833276459
+      spriteID: a231fdfe9fbc85e4b86585e8539a74ad
+      internalID: 1917469233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_right_4
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce1a7ab95b290bd4fbc053fd152501a2
-      internalID: 1876489555
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_down_1
+      name: guard_idle_3
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2aebb0edaa82704cbb0ed0db5b91188
-      internalID: -1565249483
+      spriteID: 622159f3ceb2ad4439d280dbd944c4b7
+      internalID: 579110888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_down_2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: abb2aaf2b3e9ac14e90d65c206701be4
-      internalID: -736802737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_down_3
+      name: guard_idle_4
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2238c7f30f1fc1148a791c018bb311fe
-      internalID: -323424038
+      spriteID: 2c1a07f1e9928a145b529bf8465a7763
+      internalID: 1394086441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_down_4
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: faeade40d1d1bd548b690790533a393a
-      internalID: -207887757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_left_1
+      name: guard_down_1
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 193c134cf58b862439eb5de36f3aa059
-      internalID: 303039491
+      spriteID: 6de365c55741f2f4385844095615b583
+      internalID: 1862647001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_left_2
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f66805de910a4374f8fc83a925e8bffc
-      internalID: -1582392437
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_left_3
+      name: guard_down_2
       rect:
         serializedVersion: 2
         x: 160
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01265b56f225cf94ca024080dcf5b313
-      internalID: -2098096354
+      spriteID: d64301c17c37eeb4dac12c6fb7228117
+      internalID: -1103963420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_left_4
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6a966c0fdf8ec34aad0be484c06a8db
-      internalID: -1718250026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_up_1
+      name: guard_down_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fbad807f4bd0a149bc323a607498096
-      internalID: -519420238
+      spriteID: 717af26ddefb9e548abb8265c2ae8f10
+      internalID: -1804296510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_up_2
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8030ff6034c6ccb46a3eae7d6e7f8e10
-      internalID: -1459848173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_up_3
+      name: guard_down_4
       rect:
         serializedVersion: 2
         x: 224
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c1451dfd1bc46f46966174a46fbf527
-      internalID: 899442435
+      spriteID: e6048e6f6fb7d1d4b85a462cf7a4cfef
+      internalID: -1384897648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_up_4
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 220c52531f07c2f45aaa136f442e3e93
-      internalID: -1985026394
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_idle_1
+      name: guard_left_1
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9c8db27d716b974d9602e5b3a083b11
-      internalID: 336353462
+      spriteID: 149c00c43e7838c4cb1e45ca284cb001
+      internalID: -1607998880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_idle_2
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17ad2d8924c644e4b80f5775d8f11c1f
-      internalID: -292025195
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_idle_3
+      name: guard_left_2
       rect:
         serializedVersion: 2
         x: 288
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 369e90fe16d945645b0d779e952af2e1
-      internalID: -30426490
+      spriteID: b13854502c74fa547a2b76fc085a42d8
+      internalID: 1721931590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_idle_4
+      name: guard_left_3
       rect:
         serializedVersion: 2
-        x: 304
+        x: 320
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebdf9c4eea11ba24a9960667d9b6fa57
-      internalID: -176935465
+      spriteID: be0292c2745cd3245b6ceec394cd43dc
+      internalID: -1269462448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_left_4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07a4aa6185d468e4ba3b5ab8e434a0b3
+      internalID: -171884343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_right_1
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 749d85ab7554fee48aa81ad726362b4f
+      internalID: -1286636666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_right_2
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ce9ba3ec828044aa0559eaba84c548
+      internalID: -508871087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_right_3
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3237b00a0bee14647b77bff70cd26b89
+      internalID: -1113174708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_right_4
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 369b6c1eb5bea81469ca244cfffcab3a
+      internalID: -698503795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_up_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f495d70dd96dd9340bb81769cab52271
+      internalID: 646782994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_up_2
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dd304189c937ad42b8d2d5d0d26f4c2
+      internalID: 1849789665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_up_3
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 995e04edbde92bb47ab4df04967f58a4
+      internalID: -851945276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_up_4
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1214ca4252daf524795c38d063d14fc0
+      internalID: -362166715
       vertices: []
       indices: 
       edges: []
@@ -540,26 +553,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      character_down_1: -1565249483
-      character_down_2: -736802737
-      character_down_3: -323424038
-      character_down_4: -207887757
-      character_idle_1: 336353462
-      character_idle_2: -292025195
-      character_idle_3: -30426490
-      character_idle_4: -176935465
-      character_left_1: 303039491
-      character_left_2: -1582392437
-      character_left_3: -2098096354
-      character_left_4: -1718250026
-      character_right_1: 299197806
-      character_right_2: -505649354
-      character_right_3: -1833276459
-      character_right_4: 1876489555
-      character_up_1: -519420238
-      character_up_2: -1459848173
-      character_up_3: 899442435
-      character_up_4: -1985026394
+      guard_down_1: 1862647001
+      guard_down_2: -1103963420
+      guard_down_3: -1804296510
+      guard_down_4: -1384897648
+      guard_idle_1: 1927821013
+      guard_idle_2: 1917469233
+      guard_idle_3: 579110888
+      guard_idle_4: 1394086441
+      guard_left_1: -1607998880
+      guard_left_2: 1721931590
+      guard_left_3: -1269462448
+      guard_left_4: -171884343
+      guard_right_1: -1286636666
+      guard_right_2: -508871087
+      guard_right_3: -1113174708
+      guard_right_4: -698503795
+      guard_up_1: 646782994
+      guard_up_2: 1849789665
+      guard_up_3: -851945276
+      guard_up_4: -362166715
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

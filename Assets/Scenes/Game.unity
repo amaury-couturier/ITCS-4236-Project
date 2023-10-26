@@ -2161,10 +2161,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5235173851010106951, guid: 9cfc542790edb4c48b7582974d7ae418, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6751096438776949585, guid: 9cfc542790edb4c48b7582974d7ae418, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2207,10 +2203,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8430807766502974267, guid: 9cfc542790edb4c48b7582974d7ae418, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8430807766502974267, guid: 9cfc542790edb4c48b7582974d7ae418, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
