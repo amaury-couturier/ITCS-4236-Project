@@ -46,22 +46,47 @@ public class PlayerController : MonoBehaviour
     }
 
     void SetAnimBools(float inputHorizontal, float inputVertical){
-        if(inputHorizontal != 0){
+        if(Input.GetKeyDown(KeyCode.A)){
             anim.SetBool("isWalkingRight", true);
-        } else{
+        } 
+        if(Input.GetKeyUp(KeyCode.A)) {
             anim.SetBool("isWalkingRight", false);
         }
-        if(inputVertical > 0 && inputHorizontal == 0){
+        if(Input.GetKeyDown(KeyCode.D)){
+            anim.SetBool("isWalkingRight", true);
+        } 
+        if(Input.GetKeyUp(KeyCode.D)) {
+            anim.SetBool("isWalkingRight", false);
+        }
+        if(Input.GetKeyDown(KeyCode.W)){
             anim.SetBool("isWalkingUp", true);
-        } else{
+        } 
+        if(Input.GetKeyUp(KeyCode.W)) {
             anim.SetBool("isWalkingUp", false);
         }
-
-        if(inputVertical < 0 && inputHorizontal == 0){
+        if(Input.GetKeyDown(KeyCode.S)){
             anim.SetBool("isWalkingDown", true);
-        } else{
+        } 
+        if(Input.GetKeyUp(KeyCode.S)) {
             anim.SetBool("isWalkingDown", false);
         }
+
+        // if(inputHorizontal != 0){
+        //     anim.SetBool("isWalkingRight", true);
+        // } else {
+        //     anim.SetBool("isWalkingRight", false);
+        // }
+        // if(inputVertical > 0 && inputHorizontal == 0){
+        //     anim.SetBool("isWalkingUp", true);
+        // } else{
+        //     anim.SetBool("isWalkingUp", false);
+        // }
+
+        // if(inputVertical < 0 && inputHorizontal == 0){
+        //     anim.SetBool("isWalkingDown", true);
+        // } else{
+        //     anim.SetBool("isWalkingDown", false);
+        // }
 
     }
 
