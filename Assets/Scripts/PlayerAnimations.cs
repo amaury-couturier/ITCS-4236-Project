@@ -21,19 +21,23 @@ public class PlayerAnimations : MonoBehaviour
 
     void Update()
     {
-        if (!playerController.isWalking && !playerController.isDashing)
+        if (!playerController.isWalkingRight && !playerController.isWalkingLeft && !playerController.isWalkingUp && !playerController.isWalkingDown && !playerController.isDashing)
         {
             PlayAnimation(playerIdle);
         }
-        else if (Input.GetKeyDown(KeyCode.D) && playerController.isWalking && playerController.isFacingRight && !playerController.isDashing)
+        else if (playerController.isWalkingRight && playerController.isFacingRight && !playerController.isDashing)
         {
             PlayAnimation(walkRight);
         }
-        else if (Input.GetKeyDown(KeyCode.W) && playerController.isWalking && !playerController.isDashing)
+        else if (playerController.isWalkingLeft && !playerController.isFacingRight && !playerController.isDashing)
+        {
+            PlayAnimation(walkRight);
+        }
+        else if (playerController.isWalkingUp && !playerController.isDashing)
         {
             PlayAnimation(walkUp);
         }
-        else if (Input.GetKeyDown(KeyCode.S) && playerController.isWalking && !playerController.isDashing)
+        else if (playerController.isWalkingDown && !playerController.isDashing)
         {
             PlayAnimation(walkDown);
         }

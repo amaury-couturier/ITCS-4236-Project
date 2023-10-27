@@ -13,7 +13,10 @@ public class PlayerController : MonoBehaviour
     private float currentVelocityY;
     private float inputHorizontal;
     private float inputVertical;
-    public bool isWalking;
+    public bool isWalkingRight;
+    public bool isWalkingLeft;
+    public bool isWalkingUp;
+    public bool isWalkingDown;
     
     [Header("Player Dash")]
     [SerializeField] private float dashingPower;
@@ -39,13 +42,28 @@ public class PlayerController : MonoBehaviour
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
 
-        if (isDashing || Mathf.Abs(inputHorizontal) == 0.0f || Mathf.Abs(inputVertical) == 0.0f)
+        if (isDashing || (Mathf.Abs(inputHorizontal) == 0.0f && Mathf.Abs(inputVertical) == 0.0f))
         {
-            isWalking = false;
+            isWalkingRight = false;
+            isWalkingLeft = false;
+            isWalkingUp = false;
+            isWalkingDown = false;
         }
-        else
+        else if (!isDashing && inputHorizontal > 0.0f)
         {
-            isWalking = Mathf.Abs(inputHorizontal) > 0.0f || Mathf.Abs(inputVertical) > 0.0f;
+            isWalkingRight = inputHorizontal > 0.0f;
+        }
+        else if (!isDashing && inputHorizontal < 0.0f)
+        {
+            isWalkingLeft = inputHorizontal < 0.0f;
+        }
+        else if (!isDashing && inputVertical > 0.0f)
+        {
+            isWalkingUp = inputVertical > 0.0f;
+        }
+        else if (!isDashing && inputVertical < 0.0f)
+        {
+            isWalkingDown = inputVertical < 0.0f;
         }
 
         CheckDashInput();
