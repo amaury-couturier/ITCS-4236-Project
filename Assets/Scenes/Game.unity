@@ -1591,12 +1591,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a0a20657e6c5b4c8df0e6e0c480c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inRange: 0
-  interactKey: 113
-  interactionAction:
-    m_PersistentCalls:
-      m_Calls: []
   coin: {fileID: 7445330178804025085, guid: 1d2a2bbc9374f47499e36740968a16bd, type: 3}
+  interactKey: 113
+  radiusOfSatisfaction: 1.5
 --- !u!1 &1570874377
 GameObject:
   m_ObjectHideFlags: 0
