@@ -8,8 +8,8 @@ public class PlayerAnimations : MonoBehaviour
     private PlayerController playerController;
 
     public string currentState;
-    public string playerIdle = "Idle";
-    public string walkRight = "Walk_Right";
+    public string playerIdle = "Character_Idle";
+    public string walkRight = "Character_Walk_Right";
     public string walkUp = "Character_Walk_Up";
     public string walkDown = "Character_Walk_Down";
 
