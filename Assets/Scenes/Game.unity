@@ -382,7 +382,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 58.617664, y: 32.4}
+    oldSize: {x: 58.6, y: 32.4}
     newSize: {x: 58.6, y: 32.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac49a5ef6b914da3bfe990b563f8b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyDisplayPathGizmos: 1
+  onlyDisplayPathGizmos: 0
   guard: {fileID: 511673796}
   unwalkableMask:
     serializedVersion: 2
@@ -1631,7 +1631,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

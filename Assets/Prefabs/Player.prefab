@@ -295,9 +295,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cfdc3c7426cd5649b5a0523a2a66695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxSpeed: 6
+  playerMaxSpeed: 4
   acceleration: 8
-  isWalking: 0
+  isWalkingRight: 0
+  isWalkingLeft: 0
+  isWalkingUp: 0
+  isWalkingDown: 0
   dashingPower: 42
   dashingTime: 0.25
   dashingCooldown: 1
