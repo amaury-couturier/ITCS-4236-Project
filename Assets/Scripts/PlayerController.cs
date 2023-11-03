@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     public bool isFacingRight = true;
     [SerializeField] private Animator anim;
+    [SerializeField] private FieldOfView FOV;
 
     void Update()
     {
@@ -69,6 +70,11 @@ public class PlayerController : MonoBehaviour
         CheckDashInput();
 
         Flip();
+
+        Vector3 mousePosition = GetMouseWorldPosition();
+        Vector3 aimDirection = (mousePosition - transform.position).normalized;
+        FOV.SetOrigin(transform.position);
+        FOV.SetAimDirection(aimDirection);
     }
 
     void FixedUpdate()
@@ -132,5 +138,25 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+    }
+
+    public Vector3 GetMouseWorldPosition()
+    {
+        Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
+        vec.z = 0f;
+        return vec;
+    } 
+    public Vector3 GetMouseWorldPositionWithZ()
+    {
+        return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
+    }
+    public Vector3 GetMouseWorldPositionWithZ(Camera worldCamera)
+    {
+        return GetMouseWorldPositionWithZ(Input.mousePosition, worldCamera);
+    }
+    public Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
+    {
+        Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
+        return worldPosition;
     }
 }
