@@ -6,10 +6,8 @@ public class CoinToss : MonoBehaviour
 {
     [SerializeField] private GameObject coin;
     [SerializeField] public KeyCode interactKey;
-    private GameObject instantiatedCoin; // Store a reference to the instantiated coin.
-    [SerializeField] private float radiusOfSatisfaction = 1.5f;
-
-    private bool tossed = false;
+    public GameObject instantiatedCoin;
+    public bool tossed = false;
 
     void Update()
     {
@@ -18,16 +16,15 @@ public class CoinToss : MonoBehaviour
             tossed = true;
             instantiatedCoin = Instantiate(coin, transform.position, Quaternion.identity);
         }
-        
-        if (tossed)
-        {
-            float distance = Vector3.Distance(transform.position, instantiatedCoin.transform.position);
+    }
 
-            if (instantiatedCoin != null && Input.GetKeyDown(interactKey) && distance <= radiusOfSatisfaction)
-            { 
-                tossed = false;
-                Destroy(instantiatedCoin); // Destroy the instantiated coin.
-            }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Player") /*&& tossed*/)
+        {
+            Debug.Log("ENtered");
+            Destroy(instantiatedCoin);
+            tossed = false;
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3696704481201820884}
   - component: {fileID: 5399679393962736980}
   - component: {fileID: 799545608944106621}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: playerAnimations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,8 @@ GameObject:
   - component: {fileID: 2636278021134100239}
   - component: {fileID: 6462898269121765249}
   - component: {fileID: 5418932778850087255}
-  m_Layer: 0
+  - component: {fileID: 8905691663286313502}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -309,6 +310,7 @@ MonoBehaviour:
   tr: {fileID: 2717342553800556693}
   isFacingRight: 1
   anim: {fileID: 5399679393962736980}
+  FOV: {fileID: 0}
 --- !u!70 &6462898269121765249
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -357,7 +359,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 
-  playerIdle: playerIdle
-  walkRight: Walk_Right
+  playerIdle: Character_Idle
+  walkRight: Character_Walk_Right
   walkUp: Character_Walk_Up
   walkDown: Character_Walk_Down
+--- !u!114 &8905691663286313502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430807766502974267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a0a20657e6c5b4c8df0e6e0c480c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 7445330178804025085, guid: 1d2a2bbc9374f47499e36740968a16bd, type: 3}
+  interactKey: 113
+  radiusOfSatisfaction: 1.5
