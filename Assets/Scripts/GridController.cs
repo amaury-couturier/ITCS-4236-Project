@@ -121,4 +121,77 @@ public class GridController: MonoBehaviour
             }
         }
     }
+
+    // Newly added FindPath function
+    public List<Tile> FindPath(Vector2 startPos, Vector2 targetPos)
+    {
+        Tile startTile = TileFromWorldPoint(startPos);
+        Tile targetTile = TileFromWorldPoint(targetPos);
+
+        Heap<Tile> openSet = new Heap<Tile>(MaxSize);
+        HashSet<Tile> closedSet = new HashSet<Tile>();
+        openSet.Add(startTile);
+
+        while (openSet.Count > 0)
+        {
+            Tile currentTile = openSet.RemoveFirst();
+            closedSet.Add(currentTile);
+
+            if (currentTile == targetTile)
+            {
+                return RetracePath(startTile, targetTile);
+            }
+
+            foreach (Tile neighbor in GetNeighbors(currentTile))
+            {
+                if (!neighbor.walkable || closedSet.Contains(neighbor))
+                {
+                    continue;
+                }
+
+                int newMovementCostToNeighbor = currentTile.gCost + GetDistance(currentTile, neighbor);
+                if (newMovementCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
+                {
+                    neighbor.gCost = newMovementCostToNeighbor;
+                    neighbor.hCost = GetDistance(neighbor, targetTile);
+                    neighbor.parent = currentTile;
+
+                    if (!openSet.Contains(neighbor))
+                    {
+                        openSet.Add(neighbor);
+                    }
+                }
+            }
+        }
+
+        // Path not found
+        return null;
+    }
+
+    private List<Tile> RetracePath(Tile startTile, Tile endTile)
+    {
+        List<Tile> path = new List<Tile>();
+        Tile currentTile = endTile;
+
+        while (currentTile != startTile)
+        {
+            path.Add(currentTile);
+            currentTile = currentTile.parent;
+        }
+        path.Reverse();
+
+        return path;
+    }
+
+    private int GetDistance(Tile tileA, Tile tileB)
+    {
+        int distanceX = Mathf.Abs(tileA.gridX - tileB.gridX);
+        int distanceY = Mathf.Abs(tileA.gridY - tileB.gridY);
+
+        if (distanceX > distanceY)
+        {
+            return 14 * distanceY + 10 * (distanceX - distanceY);
+        }
+        return 14 * distanceX + 10 * (distanceY - distanceX);
+    }
 }
