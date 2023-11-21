@@ -8,10 +8,9 @@ public class GuardController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform guardTransform;
-    [SerializeField] private float detectionThreshold = 0.001f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator anim;
-    [SerializeField] private NavMeshAgent MeshAgent;
+    [SerializeField] private GuardFieldOfView FOV;
 
     private GridController gridController;
     private bool isChasing = false;
@@ -29,39 +28,9 @@ public class GuardController : MonoBehaviour
 
     private void Update()
     {
-         // Get the vector from the guard to the player
-        Vector2 toPlayer = playerTransform.position - guardTransform.position;
-
-        // Get the forward direction of the guard
-        Vector2 guardForward = guardTransform.up;
-
-        // Calculate the dot product
-        float dotProduct = Vector2.Dot(toPlayer.normalized, guardForward);
-
-        if (dotProduct > detectionThreshold)
-        {
-            // Implement A* pathfinding algorithm here
-            Debug.Log("Player is in front of the guard.");
-
-            if (!isChasing)
-            {
-                StartChasing();
-            }
-
-        } 
-        else 
-        {
-            // Implement a "StopChasing()" function here
-            Debug.Log("Player is out of sight.");
-
-            if (isChasing)
-            {
-                StopChasing();
-            }
-        }
-
         SetAnimBools(rb.velocity.x, rb.velocity.y);
 
+        FOV.SetOrigin(transform.position);
     } 
 
     void SetAnimBools(float inputHorizontal, float inputVertical)
