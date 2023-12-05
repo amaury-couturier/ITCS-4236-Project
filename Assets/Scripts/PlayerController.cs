@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     private float targetVelocityY;
     private float currentVelocityX;
     private float currentVelocityY;
-    private float inputHorizontal;
-    private float inputVertical;
+    public float inputHorizontal;
+    public float inputVertical;
     public bool isWalkingRight;
     public bool isWalkingLeft;
     public bool isWalkingUp;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     public bool isFacingRight = true;
     [SerializeField] private Animator anim;
-    [SerializeField] private FieldOfView FOV;
+    //[SerializeField] private FieldOfView FOV;
 
     void Update()
     {
@@ -71,10 +71,10 @@ public class PlayerController : MonoBehaviour
 
         Flip();
 
-        Vector3 mousePosition = GetMouseWorldPosition();
+        /*Vector3 mousePosition = GetMouseWorldPosition();
         Vector3 aimDirection = (mousePosition - transform.position).normalized;
         FOV.SetOrigin(transform.position);
-        FOV.SetAimDirection(aimDirection);
+        FOV.SetAimDirection(aimDirection);*/
     }
 
     void FixedUpdate()
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
-    public Vector3 GetMouseWorldPosition()
+    /*public Vector3 GetMouseWorldPosition()
     {
         Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
         vec.z = 0f;
@@ -158,5 +158,5 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
         return worldPosition;
-    }
+    }*/
 }
