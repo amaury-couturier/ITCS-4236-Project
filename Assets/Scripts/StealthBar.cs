@@ -8,6 +8,8 @@ public class StealthBar : MonoBehaviour
     [SerializeField] private Image fillImage;
     private Slider slider;
     [SerializeField] private float fillValue = 0.02f;
+    [SerializeField] private float decreaseValue = 0.04f;
+    [SerializeField] private float dashValue = 0.05f;
     private float fillTimer = 0.0f;
     [SerializeField] private float fillInterval = 0.25f;
 
@@ -29,6 +31,11 @@ public class StealthBar : MonoBehaviour
         {
             fillImage.enabled = true;
         }
+        if (slider.value >= slider.maxValue)
+        {
+            //Guard starts to pathfind to player's current location
+            Debug.Log("Stealth bar full");
+        }
 
         if ((Mathf.Abs(playerController.inputHorizontal) != 0.0f) || (Mathf.Abs(playerController.inputVertical) != 0.0f))
         {
@@ -41,6 +48,22 @@ public class StealthBar : MonoBehaviour
                 slider.value += fillValue;
                 fillTimer = 0.0f; // Reset the timer
             }
+        }
+        if (playerController.inputHorizontal == 0.0f && playerController.inputVertical == 0.0f)
+        {
+            fillTimer += Time.deltaTime;
+
+            // Check if the fill interval is reached
+            if (fillTimer >= fillInterval)
+            {
+                slider.value -= decreaseValue;
+                fillTimer = 0.0f; // Reset the timer
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            slider.value += dashValue;
         }
     }
 }

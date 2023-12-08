@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class GuardController : MonoBehaviour
-{
+{   
+    [Header("Components")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform guardTransform;
@@ -12,13 +13,20 @@ public class GuardController : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private GuardFieldOfView FOV;
 
+    [Header("A* Chasing")]
     private GridController gridController;
     private bool isChasing = false;
     private List<Tile> currentPath;
+    
+    [Header("Patrolling")]
+    [SerializeField] private Transform[] patrolPoints;
+    private int targetPoint;
 
     void Start()
     {
         gridController = FindObjectOfType<GridController>();
+
+        targetPoint = 0;
 
         if (gridController == null)
         {
@@ -28,17 +36,26 @@ public class GuardController : MonoBehaviour
 
     private void Update()
     {
+        Patrol();
+
         SetAnimBools(rb.velocity.x, rb.velocity.y);
 
+        //CHANGE ANGLE FOR EACH DIRECTION THE GUARD IS WALKING
+        //SOMETHING OF THE SORT if (inputHorizontal < 0f) FOV.angle = ...
         FOV.SetOrigin(transform.position);
     } 
 
     void SetAnimBools(float inputHorizontal, float inputVertical)
     {
-        if(inputHorizontal != 0){
+        if(inputHorizontal > 0){
             anim.SetBool("isWalkingRight", true);
         } else{
             anim.SetBool("isWalkingRight", false);
+        }
+        if(inputHorizontal < 0){
+            anim.SetBool("isWalkingLeft", true);
+        } else{
+            anim.SetBool("isWalkingLeft", false);
         }
         if(inputVertical > 0 && inputHorizontal == 0){
             anim.SetBool("isWalkingUp", true);
@@ -68,6 +85,25 @@ public class GuardController : MonoBehaviour
 
         // Clear the path
         ClearPath();
+    }
+
+    void Patrol()
+    {
+        if (Vector2.Distance(transform.position, patrolPoints[targetPoint].position) < 0.2f)
+        {
+            IncreaseTargetInt();
+        }
+
+        transform.position = Vector2.MoveTowards(transform.position, patrolPoints[targetPoint].position, moveSpeed * Time.deltaTime);      
+    }
+
+    void IncreaseTargetInt()
+    {
+        targetPoint++;
+        if (targetPoint >= patrolPoints.Length)
+        {
+            targetPoint = 0;
+        }
     }
 
     IEnumerator AStarPathfinding()

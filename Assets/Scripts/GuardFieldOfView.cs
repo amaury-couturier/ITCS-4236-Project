@@ -20,10 +20,9 @@ public class GuardFieldOfView : MonoBehaviour
     }
 
     private void LateUpdate()
-    {
-        
+    {   
         int rayCount = 50;
-        float angle = startingAngle;
+        float angle = startingAngle + fov / 2f;
         float angleIncrease = fov / rayCount;
         float viewDistance = 15f;
 
@@ -55,9 +54,7 @@ public class GuardFieldOfView : MonoBehaviour
                 {
                     playerDetected = false;
                 }
-            }
-
-            
+            } 
 
             vertices[vertexIndex] = vertex;
 
@@ -80,7 +77,7 @@ public class GuardFieldOfView : MonoBehaviour
 
         if (playerDetected)
         {
-            // Add Logic here so that the guaard starts using A* and Kinematic Arrive to move towards player
+            // Add Logic here so that the guard starts using A* and Kinematic Arrive to move towards player
             Debug.Log("Player detected!");
         }
     }
