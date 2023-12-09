@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2415152190363373473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11, y: 0, z: 0}
+  m_LocalPosition: {x: -26.45, y: 9.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,13 +48,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a85dc87182945049056df16bda9cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 4.7
   playerTransform: {fileID: 0}
   guardTransform: {fileID: 414300642661918556}
   rb: {fileID: 6357643169252462619}
   anim: {fileID: 8149779561035465715}
-  FOV: {fileID: 0}
-  patrolPoints: []
+  prefabFOV: {fileID: 5745674986271397719, guid: 078c9a0841b505844b5da019c7eb999b, type: 3}
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &5752093298875331773
 SpriteRenderer:
   m_ObjectHideFlags: 0
