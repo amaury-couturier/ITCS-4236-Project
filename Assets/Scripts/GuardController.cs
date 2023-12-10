@@ -15,6 +15,7 @@ public class GuardController : MonoBehaviour
     [SerializeField] private float fovAngle;
     [SerializeField] private float viewDistance;
     private FieldOfView FOV;
+    private Vector3 previousPosition;
 
     [Header("A* Chasing")]
     private GridController gridController;
@@ -27,6 +28,8 @@ public class GuardController : MonoBehaviour
 
     void Start()
     {
+        //previousPosition = transform.position;
+
         gridController = FindObjectOfType<GridController>();
 
         targetPoint = 0;
@@ -50,7 +53,7 @@ public class GuardController : MonoBehaviour
         //CHANGE ANGLE FOR EACH DIRECTION THE GUARD IS WALKING
         //SOMETHING OF THE SORT if (inputHorizontal < 0f) FOV.angle = ...
         FOV.SetOrigin(transform.position);
-        FOV.SetAimDirection(GetAimDirection());
+        FOV.SetAimDirection(transform.position);
 
         FindTarget();
     } 
@@ -163,35 +166,44 @@ public class GuardController : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    //THIS FUNCTION DOES NOT CURRENTLY WORK, DON'T KNOW WHY BUT I THINK THE LOGIC WE ARE LOOKING FOR IS THERE
     public Vector3 GetAimDirection()
     {
-        Vector2 velocity = rb.velocity.normalized;
-        float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        // Get the current position of the GameObject
+        Vector3 currentPosition = transform.position;
 
-        // Round to 45-degree angles to simplify (right, up, left, down)
-        angle = Mathf.Round(angle / 45.0f) * 45.0f;
+        // Calculate the movement direction
+        Vector3 movementDirection = currentPosition - previousPosition;
 
-        Vector3 aimDirection = Vector3.zero;
+        // Check the movement direction
+        if (movementDirection.magnitude > 0.001f) 
+        {
+            if (Mathf.Abs(movementDirection.x) > Mathf.Abs(movementDirection.y))
+            {
+                if (movementDirection.x > 0)
+                {
+                    FOV.angle = FOV.startingAngle - FOV.fov;
+                }
+                else
+                {
+                    FOV.angle = FOV.startingAngle - FOV.fov;
+                }
+            }
+            else
+            {
+                if (movementDirection.y > 0)
+                {
+                    FOV.angle = FOV.startingAngle - FOV.fov;
+                }
+                else
+                {
+                    FOV.angle = FOV.startingAngle - FOV.fov;
+                }
+            }
+        }
 
-        if (rb.velocity.x > 0)
-        {
-            aimDirection = Quaternion.Euler(0, 0, angle) * Vector3.right;
-        }
-        if (rb.velocity.x < 0)
-        {
-            aimDirection = Quaternion.Euler(0, 0, angle) * Vector3.left;
-        }
-        if (rb.velocity.y > 0)
-        {
-            aimDirection = Quaternion.Euler(0, 0, angle) * Vector3.up;
-        }
-        if (rb.velocity.y < 0)
-        {
-            aimDirection = Quaternion.Euler(0, 0, angle) * Vector3.down;
-        }
-
-        return aimDirection;
+        // Update the previous position for the next frame
+        previousPosition = currentPosition;
+        return currentPosition;
     }
 
     private void FindTarget()
@@ -199,12 +211,12 @@ public class GuardController : MonoBehaviour
         if (Vector3.Distance(transform.position, playerTransform.position) < viewDistance)
         {
             Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
-            if (Vector3.Angle(GetAimDirection(), directionToPlayer) < fovAngle / 2f)
+            if (Vector3.Angle(transform.position, directionToPlayer) < fovAngle / 2f)
             {
                 RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, directionToPlayer, viewDistance);
                 if (raycastHit2D.collider != null)
                 {
-                    if (raycastHit2D.collider.CompareTag("Player"))
+                    if (!raycastHit2D.collider.CompareTag("Player"))
                     {
                         //This if statement isn't ever true? I'm not too sure why
                         Debug.Log("Player detected"); 

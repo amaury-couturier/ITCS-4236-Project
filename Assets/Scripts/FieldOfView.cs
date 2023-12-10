@@ -7,13 +7,14 @@ public class FieldOfView : MonoBehaviour
     private Mesh mesh;
     [SerializeField] private LayerMask layerMask;
     private Vector3 origin;
-    private float startingAngle;
-    private float fov;
-    private float viewDistance;
+    public float startingAngle;
+    public float fov;
+    public float viewDistance;
+    public float angle;
 
     void Start()
     {
-        mesh =  new Mesh();
+        mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         origin = Vector3.zero;
     }
@@ -22,7 +23,7 @@ public class FieldOfView : MonoBehaviour
     {
         
         int rayCount = 50;
-        float angle = startingAngle;
+        angle = startingAngle;
         float angleIncrease = fov / rayCount;
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];

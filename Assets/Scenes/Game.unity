@@ -1008,8 +1008,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4.9727173, y: 0}
-  m_SizeDelta: {x: 19.9454, y: 0}
+  m_AnchoredPosition: {x: -4.9854736, y: 0}
+  m_SizeDelta: {x: 0.02902, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &330014676
 MonoBehaviour:
@@ -3184,6 +3184,10 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[7]
       value: 
       objectReference: {fileID: 627849875}
+    - target: {fileID: 6357643169252462619, guid: 85a4aba5790ef924eac914daf28e7580, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
