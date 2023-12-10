@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class FieldOfView : MonoBehaviour
     public float viewDistance;
     public float angle;
 
+    private Vector3 aimDirection;  // Add this line
+    private float turnSpeed;
+
     void Start()
     {
         mesh = new Mesh();
@@ -19,7 +23,7 @@ public class FieldOfView : MonoBehaviour
         origin = Vector3.zero;
     }
 
-    private void LateUpdate()
+    /*private void LateUpdate()
     {
         
         int rayCount = 50;
@@ -66,12 +70,70 @@ public class FieldOfView : MonoBehaviour
         mesh.uv = uv;
         mesh.triangles = triangles;
         mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
+    }*/
+
+    private void LateUpdate()
+    {
+
+        float targetAngle = GetAngleFromVectorFloat(aimDirection);
+        startingAngle = Mathf.LerpAngle(startingAngle, targetAngle, turnSpeed * Time.deltaTime);
+
+
+        int rayCount = 50;
+        angle = startingAngle;
+        float angleIncrease = fov / rayCount;
+
+        Vector3[] vertices = new Vector3[rayCount + 1 + 1];
+        Vector2[] uv = new Vector2[vertices.Length];
+        int[] triangles = new int[rayCount * 3];
+
+        vertices[0] = origin;
+
+        int vertexIndex = 1;
+        int triangleIndex = 0;
+        for (int i = 0; i <= rayCount; i++)
+        {
+            Vector3 vertex;
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, ~layerMask);
+            if (raycastHit2D.collider == null)
+            {
+                vertex = origin + GetVectorFromAngle(angle) * viewDistance;
+            }
+            else
+            {
+                vertex = raycastHit2D.point;
+            }
+
+            vertices[vertexIndex] = vertex;
+
+            if (i > 0)
+            {
+                triangles[triangleIndex + 0] = 0;
+                triangles[triangleIndex + 1] = vertexIndex - 1;
+                triangles[triangleIndex + 2] = vertexIndex;
+
+                triangleIndex += 3;
+            }
+
+            vertexIndex++;
+            angle -= angleIncrease;
+        }
+
+        mesh.vertices = vertices;
+        mesh.uv = uv;
+        mesh.triangles = triangles;
+        mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
     }
 
-    public Vector3 GetVectorFromAngle(float angle)
+    /*public Vector3 GetVectorFromAngle(float angle)
     {
         float angleRad = angle * (Mathf.PI/180f);
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+    }*/
+
+    public Vector3 GetVectorFromAngle(float angle)
+    {
+        return Quaternion.Euler(0, 0, angle) * Vector3.right;
     }
 
     public float GetAngleFromVectorFloat(Vector3 dir)

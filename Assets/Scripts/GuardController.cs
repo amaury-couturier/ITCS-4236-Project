@@ -53,7 +53,8 @@ public class GuardController : MonoBehaviour
         //CHANGE ANGLE FOR EACH DIRECTION THE GUARD IS WALKING
         //SOMETHING OF THE SORT if (inputHorizontal < 0f) FOV.angle = ...
         FOV.SetOrigin(transform.position);
-        FOV.SetAimDirection(transform.position);
+        // FOV.SetAimDirection(transform.position);
+        FOV.SetAimDirection(GetAimDirection());
 
         FindTarget();
     } 
@@ -166,7 +167,7 @@ public class GuardController : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    public Vector3 GetAimDirection()
+    /*public Vector3 GetAimDirection()
     {
         // Get the current position of the GameObject
         Vector3 currentPosition = transform.position;
@@ -204,6 +205,23 @@ public class GuardController : MonoBehaviour
         // Update the previous position for the next frame
         previousPosition = currentPosition;
         return currentPosition;
+    }*/
+
+    public Vector3 GetAimDirection()
+    {
+        // Calculate the movement direction
+        Vector3 movementDirection = (transform.position - previousPosition).normalized;
+
+        // Update the previous position for the next frame
+        previousPosition = transform.position;
+
+        // Calculate the angle from the movement direction
+        float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
+
+        // Adjust FOV angle based on the movement direction
+        FOV.angle = angle;
+
+        return movementDirection;
     }
 
     private void FindTarget()
