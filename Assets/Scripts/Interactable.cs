@@ -5,26 +5,41 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] public bool inRange;
-    [SerializeField] public KeyCode interactKey; // Here we will need to create an event for out paintigns that replaces the wall with the painting on it with the wall without the painting on it
-    [SerializeField] private UnityEvent interactionAction;
+    public bool inRange;
+    public KeyCode interactKey; 
+    public UnityEvent interactionAction;
+    private PaintingCount paintingCount;
+    private PillarController pillarController;
+    private DoublePillarController doublePillarController;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        paintingCount = FindObjectOfType<PaintingCount>(); 
+        pillarController = FindObjectOfType<PillarController>();
+        doublePillarController = FindObjectOfType<DoublePillarController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (inRange)
         {
-            if (Input.GetKeyDown(interactKey))
+            // Doesn't work since you can just spam when in range of the interactable object and it iwll augment
+            // the double pilalr is causing lots of issues since I can't jsut use one variable for all the pillars now
+            // The logic is here but yeah, it makes sense as to why it doesn't work
+            if ((Input.GetKeyDown(interactKey) && !pillarController.isTaken))
             {
+                paintingCount.currentNumberOfPaintings++;
                 interactionAction.Invoke();
-                Debug.Log("Pressed Interact key");
+            }
+            else if (Input.GetKeyDown(interactKey) && !doublePillarController.frontIsTaken)
+            {
+                paintingCount.currentNumberOfPaintings++;
+                interactionAction.Invoke();
+            }
+            else if (Input.GetKeyDown(interactKey) && !doublePillarController.backIsTaken)
+            {
+                paintingCount.currentNumberOfPaintings++;
+                interactionAction.Invoke();
             }
         }
     }
@@ -34,7 +49,6 @@ public class Interactable : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = true;
-            Debug.Log("Player in range");
         }
     }
 
@@ -43,7 +57,6 @@ public class Interactable : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = false;
-            Debug.Log("Player no longer in range");
         }
     }
 }

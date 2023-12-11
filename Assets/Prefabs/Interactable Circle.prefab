@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inRange: 0
-  interactKey: 0
+  interactKey: 101
   interactionAction:
     m_PersistentCalls:
       m_Calls: []
