@@ -13,6 +13,7 @@ public class FOV : MonoBehaviour
     public LayerMask obstructionMask;
 
     public bool canSeePlayer;
+    [SerializeField] private GuardController guardController;
 
     private void Start()
     {
@@ -39,8 +40,11 @@ public class FOV : MonoBehaviour
         {
             Transform target = rangeChecks[0].transform;
             Vector2 directionToTarget = (target.position - transform.position).normalized;
+            //Vector3 lookDirection;
+            Vector3 moveDirection = guardController.GetAimDirection();
+            
 
-            if (Vector2.Angle(transform.right, directionToTarget) < angle / 2)
+            if (Vector2.Angle(moveDirection, directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector2.Distance(transform.position, target.position);
 

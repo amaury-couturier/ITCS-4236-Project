@@ -176,8 +176,8 @@ public class GuardController : MonoBehaviour
 
         float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
 
-        FieldOfView.angle = angle;
-        FOVDetection.angle = angle;
+        //FieldOfView.angle = angle;
+        //FOVDetection.angle = angle;
 
         return movementDirection;
     }
