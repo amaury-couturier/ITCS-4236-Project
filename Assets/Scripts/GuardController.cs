@@ -59,15 +59,19 @@ public class GuardController : MonoBehaviour
     {
         Patrol();
 
-        SetAnimBools(rb.velocity.x, rb.velocity.y);
+        SetAnimBools();
 
         /*FieldOfView.SetOrigin(transform.position);
         FieldOfView.SetAimDirection(GetAimDirection());*/
 
     } 
 
-    void SetAnimBools(float inputHorizontal, float inputVertical)
+    void SetAnimBools()
     {
+        Vector3 lookDir = GetLookDirection();
+        float inputHorizontal = lookDir.x;
+        float inputVertical = lookDir.y;
+        //Debug.Log("(" + lookDir.x + ", " + lookDir.y + ", " + lookDir.z + ")");
         if (Mathf.Abs(inputHorizontal) == 0.0f && Mathf.Abs(inputVertical) == 0.0f)
         {
             isWalkingRight = false;
@@ -75,21 +79,29 @@ public class GuardController : MonoBehaviour
             isWalkingUp = false;
             isWalkingDown = false;
         }
-        else if (inputHorizontal > 0.0f)
+        else if (inputHorizontal > 0.1f)
         {
-            isWalkingRight = inputHorizontal > 0.0f;
+            isWalkingRight = true;
+            isWalkingUp = false;
+            isWalkingDown = false;
         }
-        else if (inputHorizontal < 0.0f)
+        else if (inputHorizontal < -0.1f)
         {
-            isWalkingLeft = inputHorizontal < 0.0f;
+            isWalkingLeft = true;
+            isWalkingUp = false;
+            isWalkingDown = false;
         }
-        else if (inputVertical > 0.0f)
+        else if (inputVertical > 0.1f)
         {
-            isWalkingUp = inputVertical > 0.0f;
+            isWalkingUp = true;
+            isWalkingLeft = false;
+            isWalkingRight = false;
         }
-        else if (inputVertical < 0.0f)
+        else if (inputVertical < -0.1f)
         {
-            isWalkingDown = inputVertical < 0.0f;
+            isWalkingDown = true;
+            isWalkingLeft = false;
+            isWalkingRight = false;
         }
 
         Flip(inputHorizontal, inputVertical);
@@ -201,6 +213,11 @@ public class GuardController : MonoBehaviour
         //FOVDetection.angle = angle;
 
         return movementDirection;
+    }
+
+    public Vector3 GetLookDirection()
+    {
+        return (transform.position - previousPosition).normalized;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
