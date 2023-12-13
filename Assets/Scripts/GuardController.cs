@@ -11,10 +11,11 @@ public class GuardController : MonoBehaviour
     [SerializeField] private Transform guardTransform;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator anim;
-    [SerializeField] private Transform prefabFOV;
-    [SerializeField] private float fovAngle;
+    [SerializeField] private Transform prefabFieldOfView;
+    [SerializeField] private float FieldOfViewAngle;
     [SerializeField] private float viewDistance;
-    private FieldOfView FOV;
+    private FieldOfView FieldOfView;
+    private FOV FOVDetection;
     private Vector3 previousPosition;
 
     [Header("A* Chasing")]
@@ -28,7 +29,7 @@ public class GuardController : MonoBehaviour
 
     void Start()
     {
-        //previousPosition = transform.position;
+        Physics2D.queriesStartInColliders = false;
 
         gridController = FindObjectOfType<GridController>();
 
@@ -39,9 +40,11 @@ public class GuardController : MonoBehaviour
             Debug.LogError("GridController not found.");
         }
 
-        FOV = Instantiate(prefabFOV, null).GetComponent<FieldOfView>();
-        FOV.SetFoV(fovAngle);
-        FOV.SetViewDistance(viewDistance);
+        FOVDetection = GetComponent<FOV>();
+
+        /*FieldOfView = Instantiate(prefabFieldOfView, null).GetComponent<FieldOfView>();
+        FieldOfView.SetFoV(FieldOfViewAngle);
+        FieldOfView.SetViewDistance(viewDistance);*/
     }
 
     private void Update()
@@ -50,13 +53,9 @@ public class GuardController : MonoBehaviour
 
         SetAnimBools(rb.velocity.x, rb.velocity.y);
 
-        //CHANGE ANGLE FOR EACH DIRECTION THE GUARD IS WALKING
-        //SOMETHING OF THE SORT if (inputHorizontal < 0f) FOV.angle = ...
-        FOV.SetOrigin(transform.position);
-        //FOV.SetAimDirection(transform.position);
-        //FOV.SetAimDirection(GetAimDirection());
+        /*FieldOfView.SetOrigin(transform.position);
+        FieldOfView.SetAimDirection(GetAimDirection());*/
 
-        //FindTarget();
     } 
 
     void SetAnimBools(float inputHorizontal, float inputVertical)
@@ -167,92 +166,17 @@ public class GuardController : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    /*public Vector3 GetAimDirection()
+    public Vector3 GetAimDirection()
     {
-        // Get the current position of the GameObject
-        Vector3 currentPosition = transform.position;
-
-        // Calculate the movement direction
-        Vector3 movementDirection = currentPosition - previousPosition;
-
-        // Check the movement direction
-        if (movementDirection.magnitude > 0.001f) 
-        {
-            if (Mathf.Abs(movementDirection.x) > Mathf.Abs(movementDirection.y))
-            {
-                if (movementDirection.x > 0)
-                {
-                    FOV.angle = FOV.startingAngle - FOV.fov;
-                }
-                else
-                {
-                    FOV.angle = FOV.startingAngle - FOV.fov;
-                }
-            }
-            else
-            {
-                if (movementDirection.y > 0)
-                {
-                    FOV.angle = FOV.startingAngle - FOV.fov;
-                }
-                else
-                {
-                    FOV.angle = FOV.startingAngle - FOV.fov;
-                }
-            }
-        }
-
-        // Update the previous position for the next frame
-        previousPosition = currentPosition;
-        return currentPosition;
-    }*/
-
-    /*public Vector3 GetAimDirection()
-    {
-        // Calculate the movement direction
         Vector3 movementDirection = (transform.position - previousPosition).normalized;
 
-        // Update the previous position for the next frame
         previousPosition = transform.position;
 
-        // Calculate the angle from the movement direction
         float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
 
-        // Adjust FOV angle based on the movement direction
-        FOV.angle = angle;
+        FieldOfView.angle = angle;
+        FOVDetection.angle = angle;
 
         return movementDirection;
-    }*/
-
-    /*private void FindTarget()
-    {
-        if (Vector3.Distance(transform.position, playerTransform.position) < viewDistance)
-        {
-            Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
-            if (Vector3.Angle(transform.position, directionToPlayer) < fovAngle / 2f)
-            {
-                RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, directionToPlayer, viewDistance);
-                if (raycastHit2D.collider != null)
-                {
-                    if (!raycastHit2D.collider.CompareTag("Player"))
-                    {
-                        //This if statement isn't ever true? I'm not too sure why
-                        Debug.Log("Player detected"); 
-                        //ADD LOGIC HERE
-                        //This should set the guard's A* target to the player's current location,
-                        //THe player's current location will be constantly so long as he is in the flashlight
-                        //If he is not in the flashlight, the guard should move to the last seen location of the player
-                    }
-                    else
-                    {
-                        //This will trigger even if the the player is not currently in the actual flashlight
-                        //Almost like there's a circle around the guard that triggers it
-                        //I think this is due to the poor implementation of the GetAimDirection function
-                        //Once GetAimDirection() is properly implemented, this should work correctly I believe
-                        Debug.Log("Player not detected");
-                    }
-                }
-            }
-        }
-    }*/
+    }
 }

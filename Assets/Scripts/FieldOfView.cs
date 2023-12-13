@@ -131,12 +131,6 @@ public class FieldOfView : MonoBehaviour
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 
-    /*public Vector3 GetVectorFromAngle(float angle)
-    {
-        float angleRad = angle * (Mathf.PI/180f);
-        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
-    }*/
-
     public Vector3 GetVectorFromAngle(float angle)
     {
         return Quaternion.Euler(0, 0, angle) * Vector3.right;
