@@ -16,11 +16,10 @@ public class CoinToss : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPosition = mousePosition;
 
-        // Check if there is no instantiatedCoin and the interactKey is pressed
         if (instantiatedCoin == null && Input.GetKeyDown(interactKey) && !tossed)
         {
             instantiatedCoin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
-            tossed = true;
+            tossed = true;  
         }
 
         if (instantiatedCoin != null && speed > 0)
@@ -34,9 +33,9 @@ public class CoinToss : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collider.CompareTag("Coin") && speed <= 0f)
+        if (collision.collider.CompareTag("Coin") && speed <= 0f)
         {
             Destroy(instantiatedCoin);
             speed = 10.0f;

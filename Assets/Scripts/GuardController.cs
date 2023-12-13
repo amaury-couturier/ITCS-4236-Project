@@ -53,7 +53,7 @@ public class GuardController : MonoBehaviour
         //CHANGE ANGLE FOR EACH DIRECTION THE GUARD IS WALKING
         //SOMETHING OF THE SORT if (inputHorizontal < 0f) FOV.angle = ...
         FOV.SetOrigin(transform.position);
-        // FOV.SetAimDirection(transform.position);
+        //FOV.SetAimDirection(transform.position);
         FOV.SetAimDirection(GetAimDirection());
 
         FindTarget();

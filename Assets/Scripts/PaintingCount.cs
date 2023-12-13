@@ -11,6 +11,7 @@ public class PaintingCount : MonoBehaviour
     public int currentNumberOfPaintings;
     private Interactable interactable;
     private PillarController pillarController;
+    [SerializeField] private GameObject blockedDoor;
 
     void Start()
     {   
@@ -24,5 +25,11 @@ public class PaintingCount : MonoBehaviour
     void Update()
     {
         paintingsText.text = "Paintings: " + currentNumberOfPaintings + "/" + totalNumberOfPaitings;
+
+        if (currentNumberOfPaintings >= totalNumberOfPaitings)
+        {
+            currentNumberOfPaintings = totalNumberOfPaitings;
+            blockedDoor.GetComponent<Collider2D>().isTrigger = true;
+        }
     }
 }

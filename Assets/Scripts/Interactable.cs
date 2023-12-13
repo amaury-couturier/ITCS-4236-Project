@@ -10,6 +10,9 @@ public class Interactable : MonoBehaviour
     public UnityEvent interactionAction;
     private PaintingCount paintingCount;
     private PillarController pillarController;
+    private bool hasInteracted = false;
+
+    [SerializeField] private float interactableRadius = 0.1f;
 
     void Start()
     {
@@ -20,10 +23,11 @@ public class Interactable : MonoBehaviour
     {
         if (inRange)
         {
-            if (Input.GetKeyDown(interactKey) && pillarController != null && !pillarController.isTaken)
+            if (Input.GetKeyDown(interactKey) && pillarController != null && !pillarController.isTaken && !hasInteracted)
             {
                 interactionAction.Invoke();
                 paintingCount.currentNumberOfPaintings++;
+                hasInteracted = true;
             }
         }
     }
@@ -33,8 +37,20 @@ public class Interactable : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = true;
-            pillarController = collision.gameObject.GetComponent<PillarController>();
-            Debug.Log("Entered Range: " + pillarController.gameObject.name);
+
+            LayerMask interactableLayerMask = LayerMask.GetMask("Unwalkable");
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactableRadius, interactableLayerMask);
+
+            foreach (Collider2D col in colliders)
+            {
+                PillarController foundController = col.GetComponent<PillarController>();
+                if (foundController != null)
+                {
+                    pillarController = foundController;
+                    break;
+                }
+            }
         }
     }
 
@@ -44,7 +60,6 @@ public class Interactable : MonoBehaviour
         {
             inRange = false;
             pillarController = null;
-            Debug.Log("Exited Range");
         }
     }
 }
