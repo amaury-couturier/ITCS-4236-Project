@@ -14,20 +14,16 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         paintingCount = FindObjectOfType<PaintingCount>(); 
-        pillarController = FindObjectOfType<PillarController>();
     }
 
     void Update()
     {
         if (inRange)
         {
-            // Doesn't work since you can just spam when in range of the interactable object and it iwll augment
-            // the double pilalr is causing lots of issues since I can't jsut use one variable for all the pillars now
-            // The logic is here but yeah, it makes sense as to why it doesn't work
-            if ((Input.GetKeyDown(interactKey)) && !pillarController.isTaken)
+            if (Input.GetKeyDown(interactKey) && pillarController != null && !pillarController.isTaken)
             {
-                paintingCount.currentNumberOfPaintings++;
                 interactionAction.Invoke();
+                paintingCount.currentNumberOfPaintings++;
             }
         }
     }
@@ -37,6 +33,8 @@ public class Interactable : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = true;
+            pillarController = collision.gameObject.GetComponent<PillarController>();
+            Debug.Log("Entered Range: " + pillarController.gameObject.name);
         }
     }
 
@@ -45,6 +43,8 @@ public class Interactable : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = false;
+            pillarController = null;
+            Debug.Log("Exited Range");
         }
     }
 }
