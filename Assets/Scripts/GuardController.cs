@@ -19,6 +19,12 @@ public class GuardController : MonoBehaviour
     private Vector3 previousPosition;
     private CoinToss coinToss;
 
+    public bool isFacingRight = true;
+    public bool isWalkingRight;
+    public bool isWalkingLeft;
+    public bool isWalkingUp;
+    public bool isWalkingDown;
+
     [Header("A* Chasing")]
     private GridController gridController;
     private bool isChasing = false;
@@ -62,28 +68,43 @@ public class GuardController : MonoBehaviour
 
     void SetAnimBools(float inputHorizontal, float inputVertical)
     {
-        if(inputHorizontal > 0){
-            anim.SetBool("isWalkingRight", true);
-        } else{
-            anim.SetBool("isWalkingRight", false);
+        if (Mathf.Abs(inputHorizontal) == 0.0f && Mathf.Abs(inputVertical) == 0.0f)
+        {
+            isWalkingRight = false;
+            isWalkingLeft = false;
+            isWalkingUp = false;
+            isWalkingDown = false;
         }
-        if(inputHorizontal < 0){
-            anim.SetBool("isWalkingLeft", true);
-        } else{
-            anim.SetBool("isWalkingLeft", false);
+        else if (inputHorizontal > 0.0f)
+        {
+            isWalkingRight = inputHorizontal > 0.0f;
         }
-        if(inputVertical > 0 && inputHorizontal == 0){
-            anim.SetBool("isWalkingUp", true);
-        } else{
-            anim.SetBool("isWalkingUp", false);
+        else if (inputHorizontal < 0.0f)
+        {
+            isWalkingLeft = inputHorizontal < 0.0f;
+        }
+        else if (inputVertical > 0.0f)
+        {
+            isWalkingUp = inputVertical > 0.0f;
+        }
+        else if (inputVertical < 0.0f)
+        {
+            isWalkingDown = inputVertical < 0.0f;
         }
 
-        if(inputVertical < 0 && inputHorizontal == 0){
-            anim.SetBool("isWalkingDown", true);
-        } else{
-            anim.SetBool("isWalkingDown", false);
-        }
+        Flip(inputHorizontal, inputVertical);
 
+    }
+
+    private void Flip(float inputHorizontal, float inputVertical)
+    {
+        if((isFacingRight && inputHorizontal < 0f) || (!isFacingRight && inputHorizontal > 0f))
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 
     void StartChasing()
