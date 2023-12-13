@@ -34,7 +34,7 @@ public class StealthBar : MonoBehaviour
         if (slider.value >= slider.maxValue)
         {
             //Guard starts to pathfind to player's current location
-            Debug.Log("Stealth bar full");
+            //Debug.Log("Stealth bar full");
         }
 
         if ((Mathf.Abs(playerController.inputHorizontal) != 0.0f) || (Mathf.Abs(playerController.inputVertical) != 0.0f))

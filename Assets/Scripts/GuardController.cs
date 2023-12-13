@@ -54,9 +54,9 @@ public class GuardController : MonoBehaviour
         //SOMETHING OF THE SORT if (inputHorizontal < 0f) FOV.angle = ...
         FOV.SetOrigin(transform.position);
         //FOV.SetAimDirection(transform.position);
-        FOV.SetAimDirection(GetAimDirection());
+        //FOV.SetAimDirection(GetAimDirection());
 
-        FindTarget();
+        //FindTarget();
     } 
 
     void SetAnimBools(float inputHorizontal, float inputVertical)
@@ -207,7 +207,7 @@ public class GuardController : MonoBehaviour
         return currentPosition;
     }*/
 
-    public Vector3 GetAimDirection()
+    /*public Vector3 GetAimDirection()
     {
         // Calculate the movement direction
         Vector3 movementDirection = (transform.position - previousPosition).normalized;
@@ -222,9 +222,9 @@ public class GuardController : MonoBehaviour
         FOV.angle = angle;
 
         return movementDirection;
-    }
+    }*/
 
-    private void FindTarget()
+    /*private void FindTarget()
     {
         if (Vector3.Distance(transform.position, playerTransform.position) < viewDistance)
         {
@@ -254,5 +254,5 @@ public class GuardController : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }
