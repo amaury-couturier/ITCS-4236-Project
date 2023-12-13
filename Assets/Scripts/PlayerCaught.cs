@@ -11,12 +11,29 @@ public class PlayerCaught : MonoBehaviour
         guard = GameObject.Find("Guard");
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void Update()
     {
-        if (collider.gameObject == guard)
+        if (guard != null)
         {
-            //transition to game over screen
-            Debug.Log("GameOver");
+            float distance = Vector2.Distance(transform.position, guard.transform.position);
+
+            if (distance < 0.5f)
+            {
+                EndGame();
+            }
+        }
+    }
+
+    void EndGame()
+    {
+         if (guard != null)
+        {
+            float distance = Vector2.Distance(transform.position, guard.transform.position);
+
+            if (distance < 0.5f)
+            {
+                Debug.Log("Game Over");
+            }
         }
     }
 }

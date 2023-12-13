@@ -30,7 +30,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     public bool isFacingRight = true;
     [SerializeField] private Animator anim;
-    //[SerializeField] private FieldOfView FOV;
+    private GameObject guard;
+
+    void Awake()
+    {
+        guard = GameObject.Find("Guard");
+    }
 
     void Update()
     {
@@ -71,10 +76,7 @@ public class PlayerController : MonoBehaviour
 
         Flip();
 
-        /*Vector3 mousePosition = GetMouseWorldPosition();
-        Vector3 aimDirection = (mousePosition - transform.position).normalized;
-        FOV.SetOrigin(transform.position);
-        FOV.SetAimDirection(aimDirection);*/
+        EndGame();
     }
 
     void FixedUpdate()
@@ -140,23 +142,16 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
-    /*public Vector3 GetMouseWorldPosition()
+    void EndGame()
     {
-        Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-        vec.z = 0f;
-        return vec;
-    } 
-    public Vector3 GetMouseWorldPositionWithZ()
-    {
-        return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
+         if (guard != null)
+        {
+            float distance = Vector2.Distance(transform.position, guard.transform.position);
+
+            if (distance < 0.5f)
+            {
+                Debug.Log("Game Over");
+            }
+        }
     }
-    public Vector3 GetMouseWorldPositionWithZ(Camera worldCamera)
-    {
-        return GetMouseWorldPositionWithZ(Input.mousePosition, worldCamera);
-    }
-    public Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
-    {
-        Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
-        return worldPosition;
-    }*/
 }

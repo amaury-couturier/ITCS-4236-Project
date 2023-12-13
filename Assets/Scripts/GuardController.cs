@@ -17,6 +17,7 @@ public class GuardController : MonoBehaviour
     private FieldOfView FieldOfView;
     private FOV FOVDetection;
     private Vector3 previousPosition;
+    private CoinToss coinToss;
 
     [Header("A* Chasing")]
     private GridController gridController;
@@ -27,11 +28,12 @@ public class GuardController : MonoBehaviour
     [SerializeField] private Transform[] patrolPoints;
     private int targetPoint;
 
-    void Start()
+    void Awake()
     {
         Physics2D.queriesStartInColliders = false;
 
         gridController = FindObjectOfType<GridController>();
+        coinToss = FindObjectOfType<CoinToss>();
 
         targetPoint = 0;
 
@@ -179,4 +181,13 @@ public class GuardController : MonoBehaviour
 
         return movementDirection;
     }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Coin") && coinToss.speed > 0f)
+        {
+            Debug.Log("Heard coin");
+        }
+    }
+    
 }

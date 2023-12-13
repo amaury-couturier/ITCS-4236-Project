@@ -6,7 +6,7 @@ public class CoinToss : MonoBehaviour
 {
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private KeyCode interactKey;
-    [SerializeField] private float speed = 10.0f;
+    public float speed = 10.0f;
     private GameObject instantiatedCoin;
     private Vector2 targetPosition;
     private bool tossed = false;
@@ -19,6 +19,7 @@ public class CoinToss : MonoBehaviour
         if (instantiatedCoin == null && Input.GetKeyDown(interactKey) && !tossed)
         {
             instantiatedCoin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), instantiatedCoin.GetComponent<Collider2D>());
             tossed = true;  
         }
 
@@ -30,6 +31,7 @@ public class CoinToss : MonoBehaviour
         else if (speed <= 0)
         {
             speed = 0f;
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), instantiatedCoin.GetComponent<Collider2D>(), false);
         }
     }
 
