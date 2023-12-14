@@ -30,10 +30,13 @@ public class CoinToss : MonoBehaviour
             speed -= Random.Range(.1f, .25f);
             instantiatedCoin.transform.position = Vector2.MoveTowards(instantiatedCoin.transform.position, targetPosition, speed * Time.deltaTime);
         }
+        if (speed > 2.0f && speed < 9.5f)
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), instantiatedCoin.GetComponent<Collider2D>(), false);
+        }
         else if (speed <= 0)
         {
             speed = 0f;
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), instantiatedCoin.GetComponent<Collider2D>(), false);
         }
     }
 

@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class StealthBar : MonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
+    private PlayerController playerController;
+    private GuardController guardController;
     [SerializeField] private Image fillImage;
     private Slider slider;
     [SerializeField] private float fillValue = 0.02f;
@@ -14,30 +15,35 @@ public class StealthBar : MonoBehaviour
     [SerializeField] private float fillInterval = 0.25f;
     public AudioClip audioClipThreshold;
     public GameObject player;
+    public GameObject guard;
 
     void Awake()
     {
         player = GameObject.Find("Player");
+        guard = GameObject.Find("Guard");
         playerController = player.GetComponent<PlayerController>();
+        guardController = guard.GetComponent<GuardController>();
         slider = GetComponent<Slider>();
         slider.value = 0.0f;
     }
 
     void Update()
     {
-        if (slider.value <= slider.minValue)
+        if (guardController != null)
         {
-            fillImage.enabled = false;
-        }
-        if (slider.value > slider.minValue && !fillImage.enabled)
-        {
-            fillImage.enabled = true;
-        }
-        if (slider.value >= slider.maxValue)
-        {
-            //Guard starts to pathfind to player's current location
-            //Debug.Log("Stealth bar full");
-            AudioSource.PlayClipAtPoint(audioClipThreshold, player.transform.position, 0.5f);
+            if (slider.value <= slider.minValue)
+            {
+                fillImage.enabled = false;
+            }
+            if (slider.value > slider.minValue && !fillImage.enabled)
+            {
+                fillImage.enabled = true;
+            }
+            if (slider.value >= slider.maxValue)
+            {
+                guardController.StartChasing();
+                AudioSource.PlayClipAtPoint(audioClipThreshold, player.transform.position, 0.5f);
+            }
         }
 
         if (playerController != null)
