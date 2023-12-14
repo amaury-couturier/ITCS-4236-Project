@@ -14,7 +14,7 @@ public class GuardController : MonoBehaviour
     [SerializeField] private Transform prefabFieldOfView;
     [SerializeField] private float FieldOfViewAngle;
     [SerializeField] private float viewDistance;
-    private FieldOfView FieldOfView;
+    //private FieldOfView FieldOfView;
     private FOV FOVDetection;
     private Vector3 previousPosition;
     private CoinToss coinToss;
@@ -33,6 +33,8 @@ public class GuardController : MonoBehaviour
     [Header("Patrolling")]
     [SerializeField] private Transform[] patrolPoints;
     private int targetPoint;
+
+    
 
     void Awake()
     {
@@ -57,14 +59,24 @@ public class GuardController : MonoBehaviour
 
     private void Update()
     {
-        Patrol();
+
+        if (!isChasing)
+        {
+            Patrol();
+        }
+        else
+        {
+            // Optionally, you can add a condition to stop chasing if the player is no longer visible.
+            if (!FOVDetection.canSeePlayer)
+            {
+                StopChasing();
+            }
+
+        }
 
         SetAnimBools();
 
-        /*FieldOfView.SetOrigin(transform.position);
-        FieldOfView.SetAimDirection(GetAimDirection());*/
-
-    } 
+    }
 
     void SetAnimBools()
     {
@@ -119,13 +131,16 @@ public class GuardController : MonoBehaviour
         }
     }
 
-    void StartChasing()
+    public void StartChasing()
     {
-        isChasing = true;
-        StartCoroutine(AStarPathfinding());
+        if (!isChasing)
+        {
+            isChasing = true;
+            StartCoroutine(AStarPathfinding());
+        }
     }
 
-    void StopChasing()
+    public void StopChasing()
     {
         isChasing = false;
         // Implement any logic to stop chasing here
@@ -203,14 +218,11 @@ public class GuardController : MonoBehaviour
 
     public Vector3 GetAimDirection()
     {
+        // Calculate the movement direction
         Vector3 movementDirection = (transform.position - previousPosition).normalized;
 
+        // Update the previous position for the next frame
         previousPosition = transform.position;
-
-        float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
-
-        //FieldOfView.angle = angle;
-        //FOVDetection.angle = angle;
 
         return movementDirection;
     }
@@ -227,5 +239,7 @@ public class GuardController : MonoBehaviour
             Debug.Log("Heard coin");
         }
     }
+
+
     
 }

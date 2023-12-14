@@ -54,18 +54,24 @@ public class FOV : MonoBehaviour
                 {
                     canSeePlayer = true;
                     Debug.Log("can see player");
+                    guardController.StartChasing();
                 }
                 else
                 {
                     canSeePlayer = false;
+                    guardController.StopChasing();
                 }
             }
             else
             {
                 canSeePlayer = false;
+                guardController.StopChasing();
             }
         }
         else if (canSeePlayer)
+        {
             canSeePlayer = false;
+            guardController.StopChasing();
+        }
     }
 }

@@ -49,6 +49,10 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
+  startingAngle: 0
+  fov: 0
+  viewDistance: 0
+  angle: 0
 --- !u!33 &401291712327050277
 MeshFilter:
   m_ObjectHideFlags: 0

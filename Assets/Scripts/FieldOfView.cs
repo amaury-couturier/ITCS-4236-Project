@@ -13,32 +13,15 @@ public class FieldOfView : MonoBehaviour
     public float viewDistance;
     public float angle;
 
-    private Vector3 aimDirection;
-    private float turnSpeed;
-
-    [Header("Testing")]
-    public float viewRadius;
-    [Range(0, 360)]
-    public float viewAngle;
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
-    public List<Transform> visibleTargets = new List<Transform>();
-
     void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         origin = Vector3.zero;
-
-        StartCoroutine("FindTargetsDelayed", .2f);
     }
 
     private void LateUpdate()
     {
-
-        float targetAngle = GetAngleFromVectorFloat(aimDirection);
-        startingAngle = Mathf.LerpAngle(startingAngle, targetAngle, turnSpeed * Time.deltaTime);
-
         Debug.DrawLine(origin, origin + GetVectorFromAngle(startingAngle) * viewDistance, Color.red);
         Debug.DrawLine(origin, origin + GetVectorFromAngle(startingAngle - fov) * viewDistance, Color.red);
 
@@ -86,40 +69,6 @@ public class FieldOfView : MonoBehaviour
         mesh.uv = uv;
         mesh.triangles = triangles;
         mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
-    }
-
-    IEnumerator FindTargetsDelayed(float delay)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(delay);
-            FindTarget();
-        }
-    }
-
-    public void FindTarget()
-    {
-        visibleTargets.Clear();
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
-
-        for (int i = 0; i < targetsInViewRadius.Length; i++)
-        {
-            Transform target = targetsInViewRadius[i].transform;
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, directionToTarget) < viewAngle/2)
-            {
-                float distanceToTarget = Vector3.Distance(transform.position, target.position);
-                if (Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstacleMask))
-                {
-                    visibleTargets.Add(target);
-                    Debug.Log("Player detected");
-                }
-                else
-                {
-                    Debug.Log("Player not detected");
-                }
-            }
-        }
     }
 
     public Vector3 DirectionFromAngle(float angleInDegrees, bool angleIsGlobal)
