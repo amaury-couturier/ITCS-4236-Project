@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     private GameObject guard;
 
-    void Awake()
+    void Start()
     {
-        guard = GameObject.Find("Guard");
+        guard = GameObject.FindWithTag("Guard");
     }
 
     void Update()
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     void EndGame()
     {
-         if (guard != null)
+        if (guard != null)
         {
             float distance = Vector2.Distance(transform.position, guard.transform.position);
 
