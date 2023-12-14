@@ -66,11 +66,11 @@ public class GuardController : MonoBehaviour
         }
         else
         {
-            // Optionally, you can add a condition to stop chasing if the player is no longer visible.
-            if (!FOVDetection.canSeePlayer)
-            {
-                StopChasing();
-            }
+            // // Optionally, you can add a condition to stop chasing if the player is no longer visible.
+            // if (!FOVDetection.canSeePlayer)
+            // {
+            //     StopChasing();
+            // }
 
         }
 
@@ -206,7 +206,7 @@ public class GuardController : MonoBehaviour
             {
                 // Remove the reached node from the path
                 currentPath.RemoveAt(0);
-                print(currentPath.Count);
+                //print(currentPath.Count);
             }
         }
     }
