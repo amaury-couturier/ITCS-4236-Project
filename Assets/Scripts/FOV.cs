@@ -56,7 +56,7 @@ public class FOV : MonoBehaviour
                 {
                     canSeePlayer = true;
                     Debug.Log("can see player");
-                    pathFinding.FindPath(pathFinding.seeker.position, pathFinding.target.position);
+                    //pathFinding.FindPath(pathFinding.seeker.position, pathFinding.target.position);
                     guardController.StartChasing();
                 }
                 else
@@ -64,10 +64,6 @@ public class FOV : MonoBehaviour
                     canSeePlayer = false;
                 }
             }
-            // else
-            // {
-            //     canSeePlayer = false;
-            // }
         }
         else if (canSeePlayer)
         {

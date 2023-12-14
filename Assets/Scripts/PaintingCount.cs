@@ -29,7 +29,10 @@ public class PaintingCount : MonoBehaviour
         if (currentNumberOfPaintings >= totalNumberOfPaitings)
         {
             currentNumberOfPaintings = totalNumberOfPaitings;
-            blockedDoor.GetComponent<Collider2D>().isTrigger = true;
+            if (blockedDoor != null)
+            {
+                blockedDoor.GetComponent<Collider2D>().isTrigger = true;
+            }
         }
     }
 }

@@ -202,10 +202,11 @@ public class GuardController : MonoBehaviour
 
             // Check if the guard is close enough to the current node in the path
             float distanceToNode = Vector2.Distance(guardTransform.position, currentPath[0].worldPosition);
-            if (distanceToNode < 0.1f)
+            if (distanceToNode < 0.3f)
             {
                 // Remove the reached node from the path
                 currentPath.RemoveAt(0);
+                print(currentPath.Count);
             }
         }
     }

@@ -9,7 +9,7 @@ public class NextLevel : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneController.instance.LoadNextLevel();
+            SceneManager.LoadScene("Win Screen");
         }
     }
 }

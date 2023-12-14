@@ -39,7 +39,7 @@ public class StealthBar : MonoBehaviour
             {
                 fillImage.enabled = true;
             }
-            if (slider.value >= slider.maxValue)
+            if (slider.value >= .9f)
             {
                 guardController.StartChasing();
                 AudioSource.PlayClipAtPoint(audioClipThreshold, player.transform.position, 0.5f);
