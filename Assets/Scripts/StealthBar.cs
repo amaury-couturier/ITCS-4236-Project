@@ -17,7 +17,7 @@ public class StealthBar : MonoBehaviour
 
     void Awake()
     {
-        GameObject player = GameObject.Find("Player");
+        player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
         slider = GetComponent<Slider>();
         slider.value = 0.0f;
@@ -40,33 +40,36 @@ public class StealthBar : MonoBehaviour
             AudioSource.PlayClipAtPoint(audioClipThreshold, player.transform.position, 0.5f);
         }
 
-        if ((Mathf.Abs(playerController.inputHorizontal) != 0.0f) || (Mathf.Abs(playerController.inputVertical) != 0.0f))
+        if (playerController != null)
         {
-            // Accumulate time
-            fillTimer += Time.deltaTime;
-
-            // Check if the fill interval is reached
-            if (fillTimer >= fillInterval)
+            if ((Mathf.Abs(playerController.inputHorizontal) != 0.0f) || (Mathf.Abs(playerController.inputVertical) != 0.0f))
             {
-                slider.value += fillValue;
-                fillTimer = 0.0f; // Reset the timer
-            }
-        }
-        if (playerController.inputHorizontal == 0.0f && playerController.inputVertical == 0.0f)
-        {
-            fillTimer += Time.deltaTime;
+                // Accumulate time
+                fillTimer += Time.deltaTime;
 
-            // Check if the fill interval is reached
-            if (fillTimer >= fillInterval)
+                // Check if the fill interval is reached
+                if (fillTimer >= fillInterval)
+                {
+                    slider.value += fillValue;
+                    fillTimer = 0.0f; // Reset the timer
+                }
+            }
+            if (playerController.inputHorizontal == 0.0f && playerController.inputVertical == 0.0f)
             {
-                slider.value -= decreaseValue;
-                fillTimer = 0.0f; // Reset the timer
-            }
-        }
+                fillTimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            slider.value += dashValue;
+                // Check if the fill interval is reached
+                if (fillTimer >= fillInterval)
+                {
+                    slider.value -= decreaseValue;
+                    fillTimer = 0.0f; // Reset the timer
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                slider.value += dashValue;
+            }
         }
     }
 }

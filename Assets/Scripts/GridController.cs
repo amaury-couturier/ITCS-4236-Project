@@ -105,18 +105,21 @@ public class GridController: MonoBehaviour
         {
             if(grid != null)
             {
-                Tile guardTile = TileFromWorldPoint(guard.position);
-                foreach (Tile t in grid)
+                if (guard != null)
                 {
-                    Gizmos.color = (t.walkable) ? Color.white : Color.red;
-                    if (guardTile == t)
+                    Tile guardTile = TileFromWorldPoint(guard.position);
+                    foreach (Tile t in grid)
                     {
-                        Gizmos.color = Color.green;
+                        Gizmos.color = (t.walkable) ? Color.white : Color.red;
+                        if (guardTile == t)
+                        {
+                            Gizmos.color = Color.green;
+                        }
+                        if (path != null)
+                            if (path.Contains(t))
+                                Gizmos.color = Color.black;
+                        Gizmos.DrawCube(t.worldPosition, Vector3.one * (tileDiameter - .1f));
                     }
-                    if (path != null)
-                        if (path.Contains(t))
-                            Gizmos.color = Color.black;
-                    Gizmos.DrawCube(t.worldPosition, Vector3.one * (tileDiameter - .1f));
                 }
             }
         }

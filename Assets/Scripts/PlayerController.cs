@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -150,9 +151,9 @@ public class PlayerController : MonoBehaviour
         {
             float distance = Vector2.Distance(transform.position, guard.transform.position);
 
-            if (distance < 0.5f)
+            if (distance < 2.0f)
             {
-                Debug.Log("Game Over");
+                SceneManager.LoadScene("Game Over");
             }
         }
     }
