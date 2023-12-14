@@ -22,7 +22,7 @@ public class PathFinding : MonoBehaviour
         }
     }
 
-    void FindPath(Vector2 startPos, Vector2 targetPos)
+    public void FindPath(Vector2 startPos, Vector2 targetPos)
     {
         Stopwatch sw = new Stopwatch();
         sw.Start();

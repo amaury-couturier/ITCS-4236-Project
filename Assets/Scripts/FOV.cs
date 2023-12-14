@@ -14,10 +14,12 @@ public class FOV : MonoBehaviour
 
     public bool canSeePlayer;
     [SerializeField] private GuardController guardController;
+    private PathFinding pathFinding;
 
     private void Start()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
+        pathFinding = FindObjectOfType<PathFinding>();
         StartCoroutine(FOVRoutine());
     }
 
@@ -54,24 +56,22 @@ public class FOV : MonoBehaviour
                 {
                     canSeePlayer = true;
                     Debug.Log("can see player");
+                    pathFinding.FindPath(pathFinding.seeker.position, pathFinding.target.position);
                     guardController.StartChasing();
                 }
                 else
                 {
                     canSeePlayer = false;
-                    guardController.StopChasing();
                 }
             }
-            else
-            {
-                canSeePlayer = false;
-                guardController.StopChasing();
-            }
+            // else
+            // {
+            //     canSeePlayer = false;
+            // }
         }
         else if (canSeePlayer)
         {
             canSeePlayer = false;
-            guardController.StopChasing();
         }
     }
 }
