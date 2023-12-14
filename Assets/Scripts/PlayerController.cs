@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashingCooldown;
     private bool canDash = true;
     public bool isDashing;
+    public AudioClip audioClipDash;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D rb;
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
+            AudioSource.PlayClipAtPoint(audioClipDash, gameObject.transform.position, 0.5f);
         }
     }
 

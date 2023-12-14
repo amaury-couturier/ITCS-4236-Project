@@ -10,6 +10,7 @@ public class CoinToss : MonoBehaviour
     private GameObject instantiatedCoin;
     private Vector2 targetPosition;
     private bool tossed = false;
+    public AudioClip audioClipCoin;
 
     void Update()
     {
@@ -20,6 +21,7 @@ public class CoinToss : MonoBehaviour
         {
             instantiatedCoin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), instantiatedCoin.GetComponent<Collider2D>());
+            AudioSource.PlayClipAtPoint(audioClipCoin, gameObject.transform.position, 0.5f);
             tossed = true;  
         }
 

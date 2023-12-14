@@ -12,6 +12,8 @@ public class StealthBar : MonoBehaviour
     [SerializeField] private float dashValue = 0.05f;
     private float fillTimer = 0.0f;
     [SerializeField] private float fillInterval = 0.25f;
+    public AudioClip audioClipThreshold;
+    public GameObject player;
 
     void Awake()
     {
@@ -35,6 +37,7 @@ public class StealthBar : MonoBehaviour
         {
             //Guard starts to pathfind to player's current location
             //Debug.Log("Stealth bar full");
+            AudioSource.PlayClipAtPoint(audioClipThreshold, player.transform.position, 0.5f);
         }
 
         if ((Mathf.Abs(playerController.inputHorizontal) != 0.0f) || (Mathf.Abs(playerController.inputVertical) != 0.0f))
